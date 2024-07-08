@@ -66,13 +66,8 @@ test.describe("Crud Operation", () => {
     const login = new LoginPage(page);
     const Data = { firstName: "hello", lastName: "world" };
     const accessToken = await authenticateUser1({ request });
-    const entityId = await createEntity(Data, accessToken, "contacts", {
-      request,
-    });
-    await intercept(
-      "https://thinking-tester-contact-list.herokuapp.com/contacts/**",
-      { context, page }
-    );
+    const entityId = await createEntity(Data, accessToken, "contacts", {request,});
+    await intercept("https://thinking-tester-contact-list.herokuapp.com/contacts/**", { context, page });
     page.reload();
     // page.waitForTimeout(3000);
     // // await contact.contactEdit();
@@ -81,19 +76,28 @@ test.describe("Crud Operation", () => {
       contactData.updateName.ufname,
       contactData.updateName.ulname
     );
-    // await page.waitForTimeoutgit push -u origin main(3000);
-    // await deleteEntity(accessToken, '/contacts/${interceptId}',{request});
-    // await validateEntity(accessToken, '/contacts/${interceptId}','404',{request});
+    await page.waitForTimeout(3000);
+    await deleteEntity(accessToken, '/contacts/${interceptId}',{request});
+    await validateEntity(accessToken, '/contacts/${interceptId}','404',{request});
   });
 
-  
-
-  test("Delete contact", async ({ page }) => {
-    const login = new LoginPage(page);
-    await login.deleteContact();
+test('Contact delete test', async ({context, page,request}) => {
+  await intercept('**/contacts', {context, page});
+  const contact= new LoginPage(page);
+  const Data= {"firstName": "hello" , "lastname": "world"};
+  const accessToken = await authenticateUser1 ({request});
+  const entityId= await createEntity (Data, accessToken, '/contacts', {request});
+  page.reload();
+  page.on('dialog',async dialog => {
+    console.log(dialog.message());
+    await dialog.accept();
   });
+  await contact.contactDelete();
+  await page.waitForTimeout(3000);
+})
 });
 
+  
 async function intercept(module, { context, page }) {
   await context.route(module, async (route) => {
     await route.continue();
