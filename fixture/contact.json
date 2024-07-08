@@ -1,0 +1,38 @@
+{
+    "name": {
+      "fname": "Jubisha",
+      "lname": "Prajapti"
+    },
+    "bday": {
+      "bday": "2002-09-135"
+    },
+    "email": {
+      "email": "jubisha@gmail.com"
+    },
+    "phone": {
+      "phone": "9856324150"
+    },
+    "Street1": {
+      "street1": "Jyatha"
+    },
+    "Street2": {
+      "street2": "Thamel"
+    },
+    "City": {
+      "city": "Kathmandu"
+    },
+    "State": {
+      "state": "Bagmati"
+    },
+    "Postal": {
+      "postalCode": "44600"
+    },
+    "Country": {
+      "country": "Nepal"
+    },
+  
+    "updateName": {
+      "ufname": "Anish",
+      "ulname": "Maharjan"
+    }
+  }
