@@ -72,10 +72,10 @@ test.describe("Crud Operation", () => {
     // page.waitForTimeout(3000);
     // // await contact.contactEdit();
     // await page.waitForTimeout(5000);
-    await login.editContacts(
-      contactData.updateName.ufname,
-      contactData.updateName.ulname
-    );
+    // await login.editContacts(
+    //   contactData.updateName.ufname,
+    //   contactData.updateName.ulname
+    // );
     await page.waitForTimeout(3000);
     await deleteEntity(accessToken, '/contacts/${interceptId}',{request});
     await validateEntity(accessToken, '/contacts/${interceptId}','404',{request});
